@@ -4,13 +4,14 @@ int loopDelay = 5000;
 const String sketchName = "I2CBusScanner";
 const int sdaGPIO = 33;
 const int sclGPIO = 32;
+// Characters used in the display.
 const char foundChar = '#';
 const char errorChar = 'E';
 const char emptyChar = '-';
 const char unscannedChar = ' ';
 
 
-void setup() 
+void setup()
 {
 	delay( 1000 );
 	Serial.begin( 115200 );
@@ -20,6 +21,7 @@ void setup()
 	Serial.print( "Running setup() in " );
 	Serial.print( sketchName );
 	Serial.println( ".ino!" );
+	Serial.println( __FILE__ );
 
 	// Use default I2C GPIOs.
 //	Wire.begin();
@@ -30,7 +32,7 @@ void setup()
 }
 
 
-void loop() 
+void loop()
 {
 	byte error;
 	byte address;
@@ -68,7 +70,7 @@ void loop()
 
 	for( address = 0x08; address < 0x78; address++ )
 	{
-		// Print a carriage return and the row 
+		// Print a carriage return and the row
 		if( address % 0x10 == 0 )
 		{
 			Serial.println( "" );
