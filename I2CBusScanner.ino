@@ -12,8 +12,12 @@ unsigned long loopDelay = 5000;					// The maximum value of 4,294,967,295 allows
 unsigned long lastLoop = 0;						// Holds the time when the most recent loop completed.
 unsigned long loopCount = 0;						// The maximum value of 4,294,967,295 allows for a delay of about 49.7 days.
 const String sketchName = "I2CBusScanner";	// The name of this sketch.
+
+#define OVERRIDE_WIRE								// Commend out this line to use the default SCL and SDA GPIOs.
+#ifdef OVERRIDE_WIRE
 const byte sdaGPIO = 4;//33;						// Use this to set the SDA GPIO if your board uses a non-standard GPIOs for the I2C bus.
 const byte sclGPIO = 5;//32;						// Use this to set the SCL GPIO if your board uses a non-standard GPIOs for the I2C bus.
+#endif
 
 // Characters used in the display.
 const char foundChar = '#';
@@ -35,10 +39,13 @@ void setup()
 	Serial.println( "." );
 	Serial.println( __FILE__ );
 
-	// Use default I2C GPIOs.
-	// Wire.begin();
+#ifdef OVERRIDE_WIRE
 	// Override the default I2C GPIOs.
 	Wire.begin( sdaGPIO, sclGPIO );
+#else
+	// Use default I2C GPIOs.
+	 Wire.begin();
+#endif
 
 	Serial.println( "Setup complete." );
 }
@@ -61,11 +68,17 @@ void loop()
 		Serial.print( sketchName );
 		Serial.println( " will scan the I2C bus for device addresses in the range of 0x08 to 0x77." );
 		Serial.print( "Using " );
+
+#ifdef OVERRIDE_WIRE
 		Serial.print( sdaGPIO );
 		Serial.println( " for the SDA GPIO." );
 		Serial.print( "Using " );
 		Serial.print( sclGPIO );
 		Serial.println( " for the SCL GPIO." );
+#else
+		Serial.println( "default SDA and SCL GPIOs." );
+#endif
+
 		Serial.print( "Addresses with a device will be represented by \"" );
 		Serial.print( foundChar );
 		Serial.println( "\"." );
@@ -92,8 +105,8 @@ void loop()
 				Serial.println( "" );
 				Serial.print( "0x" );
 				// Get the 2nd-least significant hex number.
-				int addressDecade = address / 0x10;
-				Serial.print( addressDecade );
+				int mostSignificantFigure = address / 0x10;
+				Serial.print( mostSignificantFigure );
 				Serial.print( " " );
 			}
 
