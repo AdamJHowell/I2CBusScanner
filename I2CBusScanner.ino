@@ -11,12 +11,12 @@
 unsigned long loopDelay = 5000;					// The maximum value of 4,294,967,295 allows for a delay of about 49.7 days.
 unsigned long lastLoop = 0;						// Holds the time when the most recent loop completed.
 unsigned long loopCount = 0;						// The maximum value of 4,294,967,295 allows for a delay of about 49.7 days.
-const String sketchName = "I2CBusScanner";	// The name of this sketch.
+const char * sketchName = "I2CBusScanner";	// The name of this sketch.
 
-#define OVERRIDE_WIRE								// Commend out this line to use the default SCL and SDA GPIOs.
+// #define OVERRIDE_WIRE							// Commend out this line to use the default SCL and SDA GPIOs.
 #ifdef OVERRIDE_WIRE
-const byte sdaGPIO = 4;//33;						// Use this to set the SDA GPIO if your board uses a non-standard GPIOs for the I2C bus.
-const byte sclGPIO = 5;//32;						// Use this to set the SCL GPIO if your board uses a non-standard GPIOs for the I2C bus.
+const byte sdaGPIO = 33;							// Use this to set the SDA GPIO if your board uses a non-standard GPIOs for the I2C bus.
+const byte sclGPIO = 32;							// Use this to set the SCL GPIO if your board uses a non-standard GPIOs for the I2C bus.
 #endif
 
 // Characters used in the display.
@@ -33,10 +33,7 @@ void setup()
 	Serial.begin( 115200 );
 	if( !Serial )
 		delay( 1000 );
-	Serial.println( "" );
-	Serial.print( "Running setup() in " );
-	Serial.print( sketchName );
-	Serial.println( "." );
+	Serial.printf( "\nRunning setup() in %s.\n", sketchName );
 	Serial.println( __FILE__ );
 
 #ifdef OVERRIDE_WIRE
@@ -64,30 +61,18 @@ void loop()
 		byte arrayIndex = 0;
 
 		loopCount++;
-		Serial.println( "" );
-		Serial.print( sketchName );
-		Serial.println( " will scan the I2C bus for device addresses in the range of 0x08 to 0x77." );
-		Serial.print( "Using " );
+		Serial.printf( "\n%s will scan the I2C bus for device addresses in the range of 0x08 to 0x77.\n", sketchName );
 
 #ifdef OVERRIDE_WIRE
-		Serial.print( sdaGPIO );
-		Serial.println( " for the SDA GPIO." );
-		Serial.print( "Using " );
-		Serial.print( sclGPIO );
-		Serial.println( " for the SCL GPIO." );
+		Serial.printf( "Using %d for the SDA GPIO.\n", sdaGPIO );
+		Serial.printf( "Using %d for the SCL GPIO.\n", sclGPIO );
 #else
-		Serial.println( "default SDA and SCL GPIOs." );
+		Serial.println( "Using the default SDA and SCL GPIOs." );
 #endif
 
-		Serial.print( "Addresses with a device will be represented by \"" );
-		Serial.print( foundChar );
-		Serial.println( "\"." );
-		Serial.print( "Addresses without a device will be represented by \"" );
-		Serial.print( emptyChar );
-		Serial.println( "\"." );
-		Serial.print( "Addresses which return an error will be represented by \"" );
-		Serial.print( errorChar );
-		Serial.println( "\"." );
+		Serial.printf( "Addresses with a device will be represented by '%c'.\n", foundChar );
+		Serial.printf( "Addresses without a device will be represented by '%c'.\n", emptyChar );
+		Serial.printf( "Addresses which return an error will be represented by '%c'.\n", errorChar );
 
 		// 0x00 - 0x07 and 0x78 - 0x7F are reserved I2C addresses.
 		// Source: https://learn.adafruit.com/i2c-addresses/the-list
@@ -132,9 +117,7 @@ void loop()
 		Serial.println( "\n" );
 
 		if( deviceCount == 0 )
-		{
 			Serial.println( "No I2C devices found." );
-		}
 		else if( deviceCount > 0 )
 		{
 			Serial.print( deviceCount );
@@ -143,25 +126,16 @@ void loop()
 				Serial.print( "s" );
 			Serial.println( " found." );
 			for( int i = 0; i < arrayIndex; i++ )
-			{
-				Serial.print( "Address: 0x" );
-				Serial.println( foundArray[i], HEX );
-			}
+				Serial.printf( "Address: 0x%X\n", foundArray[i] );
 			Serial.println( "" );
 		}
+
 		if( errorCount > 0 )
-		{
-			Serial.print( errorCount );
-			Serial.println( " scanning errors encountered!" );
-		}
+			Serial.printf( "%d scanning errors encountered!\n", errorCount );
 
-		Serial.print( "Scan # " );
-		Serial.print( loopCount );
-		Serial.println( " complete." );
+		Serial.printf( "Scan # %lu complete.\n", loopCount );
 
-		Serial.print( "Pausing for " );
-		Serial.print( loopDelay / 1000 );
-		Serial.println( " seconds.\n" );
+		Serial.printf( "Pausing for %lu seconds.\n\n", loopDelay / 1000 );
 		lastLoop = millis();
 	}
 }
