@@ -28,7 +28,7 @@ const char unscannedChar = ' ';
 
 void setup()
 {
-	// A short delay to allow the user to turn on the serial monitor.
+	// A short delay to provide time to turn on the serial monitor.
 	delay( 1000 );
 	Serial.begin( 115200 );
 	if( !Serial )
