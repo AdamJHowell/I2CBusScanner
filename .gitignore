@@ -2,6 +2,7 @@ bmp.h
 .vscode/
 .vscode/
 .idea/
+cmake-build-debug/
 *.iml
 privateInfo.h
 networkVariables.h
