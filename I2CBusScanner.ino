@@ -13,10 +13,10 @@ unsigned long lastLoop = 0;						// Holds the time when the most recent loop com
 unsigned long loopCount = 0;						// The maximum value of 4,294,967,295 allows for a delay of about 49.7 days.
 const char * sketchName = "I2CBusScanner";	// The name of this sketch.
 
-// #define OVERRIDE_WIRE							// Commend out this line to use the default SCL and SDA GPIOs.
+#define OVERRIDE_WIRE							// Commend out this line to use the default SCL and SDA GPIOs.
 #ifdef OVERRIDE_WIRE
-const byte sdaGPIO = 33;							// Use this to set the SDA GPIO if your board uses a non-standard GPIOs for the I2C bus.
-const byte sclGPIO = 32;							// Use this to set the SCL GPIO if your board uses a non-standard GPIOs for the I2C bus.
+const byte sdaGPIO = 43;							// Use this to set the SDA GPIO if your board uses a non-standard GPIOs for the I2C bus.
+const byte sclGPIO = 44;							// Use this to set the SCL GPIO if your board uses a non-standard GPIOs for the I2C bus.
 #endif
 
 // Characters used in the display.
@@ -25,9 +25,13 @@ const char errorChar = 'E';
 const char emptyChar = '-';
 const char unscannedChar = ' ';
 
+const int LED = 38;
+
 
 void setup()
 {
+  pinMode( LED_BUILTIN, OUTPUT );
+  digitalWrite( LED_BUILTIN, HIGH );
 	// A short delay to allow the user to turn on the serial monitor.
 	delay( 1000 );
 	Serial.begin( 115200 );
@@ -50,6 +54,7 @@ void setup()
 
 void loop()
 {
+  digitalWrite( LED_BUILTIN, HIGH );
 	unsigned long time = millis();
 	if( ( lastLoop == 0 ) || ( time - lastLoop ) > loopDelay )
 	{
