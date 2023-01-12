@@ -25,13 +25,9 @@ const char errorChar = 'E';
 const char emptyChar = '-';
 const char unscannedChar = ' ';
 
-const int LED = 38;
-
 
 void setup()
 {
-  pinMode( LED_BUILTIN, OUTPUT );
-  digitalWrite( LED_BUILTIN, HIGH );
 	// A short delay to allow the user to turn on the serial monitor.
 	delay( 1000 );
 	Serial.begin( 115200 );
@@ -54,7 +50,6 @@ void setup()
 
 void loop()
 {
-  digitalWrite( LED_BUILTIN, HIGH );
 	unsigned long time = millis();
 	if( ( lastLoop == 0 ) || ( time - lastLoop ) > loopDelay )
 	{
