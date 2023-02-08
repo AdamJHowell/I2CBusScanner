@@ -15,8 +15,8 @@ const char * sketchName = "I2CBusScanner";	// The name of this sketch.
 
 #define OVERRIDE_WIRE							// Commend out this line to use the default SCL and SDA GPIOs.
 #ifdef OVERRIDE_WIRE
-const byte sdaGPIO = 43;							// Use this to set the SDA GPIO if your board uses a non-standard GPIOs for the I2C bus.
-const byte sclGPIO = 44;							// Use this to set the SCL GPIO if your board uses a non-standard GPIOs for the I2C bus.
+const byte sdaGPIO = 4;							// Use this to set the SDA GPIO if your board uses a non-standard GPIOs for the I2C bus.
+const byte sclGPIO = 5;							// Use this to set the SCL GPIO if your board uses a non-standard GPIOs for the I2C bus.
 #endif
 
 // Characters used in the display.
