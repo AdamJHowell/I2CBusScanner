@@ -1,6 +1,6 @@
 .idea/
 *.iml
-privateInfo.h
+privateInfo.*
 debug_custom.json
 *.svd
 
@@ -10,7 +10,7 @@ bmp.h
 .idea/
 cmake-build-debug/
 *.iml
-privateInfo.h
+privateInfo.*
 networkVariables.h
 
 # Prerequisites
