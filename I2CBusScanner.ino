@@ -15,8 +15,8 @@ const char * sketchName = "I2CBusScanner";	// The name of this sketch.
 
 #define OVERRIDE_WIRE							// Commend out this line to use the default SCL and SDA GPIOs.
 #ifdef OVERRIDE_WIRE
-const byte sdaGPIO = 43;							// Use this to set the SDA GPIO if your board uses a non-standard GPIOs for the I2C bus.
-const byte sclGPIO = 44;							// Use this to set the SCL GPIO if your board uses a non-standard GPIOs for the I2C bus.
+const byte sclGPIO = 32;							// Use this to set the SCL GPIO if your board uses a non-standard GPIOs for the I2C bus.
+const byte sdaGPIO = 33;							// Use this to set the SDA GPIO if your board uses a non-standard GPIOs for the I2C bus.
 #endif
 
 // Characters used in the display.
@@ -74,9 +74,9 @@ void loop()
 		Serial.printf( "Addresses without a device will be represented by '%c'.\n", emptyChar );
 		Serial.printf( "Addresses which return an error will be represented by '%c'.\n", errorChar );
 
-		// 0x00 - 0x07 and 0x78 - 0x7F are reserved I2C addresses.
+		// 0x00 - 0x07 and 0x78 - 0x7F are reserved I2C address ranges.
 		// Source: https://learn.adafruit.com/i2c-addresses/the-list
-		// Because of these reservations, scanning will begin at 0x08 and end at 0x77.
+		// Because of these reservations, scanning will begin at 0x08 and end at 0x77 (inclusive).
 		Serial.println( "    0123456789ABCDEF" );
 		Serial.print( "0x0 " );
 		for( int i = 0x00; i < 0x08; i++ )
