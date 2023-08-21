@@ -13,7 +13,7 @@ The only required library is Wire.h.
 
 
 ## Sample output:
-
+```
 Using the default SDA and SCL GPIOs.
 Addresses with a device will be represented by '#'.
 Addresses without a device will be represented by '-'.
@@ -33,3 +33,4 @@ Address: 0x3C
 
 Scan # 17 complete.
 Pausing for 5 seconds.
+```
