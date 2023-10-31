@@ -13,7 +13,7 @@ unsigned long lastLoop = 0;						// Holds the time when the most recent loop com
 unsigned long loopCount = 0;						// The maximum value of 4,294,967,295 allows for a delay of about 49.7 days.
 const char * sketchName = "I2CBusScanner";	// The name of this sketch.
 
-#define OVERRIDE_WIRE							// Commend out this line to use the default SCL and SDA GPIOs.
+//#define OVERRIDE_WIRE							// Commend out this line to use the default SCL and SDA GPIOs.
 #ifdef OVERRIDE_WIRE
 const byte sdaGPIO = 4;							// Use this to set the SDA GPIO if your board uses a non-standard GPIOs for the I2C bus.
 const byte sclGPIO = 5;							// Use this to set the SCL GPIO if your board uses a non-standard GPIOs for the I2C bus.
