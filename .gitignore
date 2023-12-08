@@ -2,6 +2,7 @@
 *.iml
 privateInfo.*
 debug_custom.json
+debug.cfg
 *.svd
 
 bmp.h
