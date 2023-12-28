@@ -46,3 +46,4 @@ networkVariables.h
 *.exe
 *.out
 *.app
+debug.cfg
