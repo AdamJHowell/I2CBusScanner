@@ -2,6 +2,7 @@
 *.iml
 privateInfo.*
 debug_custom.json
+debug.cfg
 *.svd
 
 bmp.h
@@ -45,3 +46,4 @@ networkVariables.h
 *.exe
 *.out
 *.app
+debug.cfg
