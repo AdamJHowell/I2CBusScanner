@@ -5,7 +5,7 @@ The SCL and SDA GPIOs can be set by changing the values of sdaGPIO and sclGPIO.
 
 ## Hardware
 
-The only required hardware is an I2C device and 
+The only required hardware is an I2C device and a MCU to run this program on.
 
 ## Libraries
 
