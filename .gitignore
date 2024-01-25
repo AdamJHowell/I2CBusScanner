@@ -1,18 +1,15 @@
 .idea/
 *.iml
 privateInfo.*
+networkVariables.h
+
 debug_custom.json
 debug.cfg
 *.svd
 
 bmp.h
 .vscode/
-.vscode/
-.idea/
 cmake-build-debug/
-*.iml
-privateInfo.*
-networkVariables.h
 
 # Prerequisites
 *.d
@@ -46,4 +43,3 @@ networkVariables.h
 *.exe
 *.out
 *.app
-debug.cfg
