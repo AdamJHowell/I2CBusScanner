@@ -2,28 +2,22 @@
  * This program was inspired by a Python I2C scanner used with the Raspberry Pi.
  * I have tried to make it as convenient as possible, incorporating features from
  * both the inspiration program and from traditional Arduino scanners.
- * @copyright   Copyright © 2022 Adam Howell
+ * @copyright   Copyright © 2024 Adam Howell
  * @licence     The MIT License (MIT)
  */
 #include "Wire.h"
 
 // Globals are used for the convenience of configuration changes.
-unsigned long loopDelay = 5000;					// The maximum value of 4,294,967,295 allows for a delay of about 49.7 days.
+unsigned long loopDelay = 5000;					        // The maximum value of 4,294,967,295 allows for a delay of about 49.7 days.
 unsigned long lastLoop = 0;						// Holds the time when the most recent loop completed.
 unsigned long loopCount = 0;						// The maximum value of 4,294,967,295 allows for a delay of about 49.7 days.
-const char * sketchName = "I2CBusScanner";	// The name of this sketch.
+const char * sketchName = "I2CBusScanner";	                        // The name of this sketch.
 
-// #define OVERRIDE_WIRE							// Commend out this line to use the default SCL and SDA GPIOs.
+// #define OVERRIDE_WIRE						// Commend out this line to use the default SCL and SDA GPIOs.
 #ifdef OVERRIDE_WIRE
-const byte sdaGPIO = 43;							// Use this to set the SDA GPIO if your board uses a non-standard GPIOs for the I2C bus.
-const byte sclGPIO = 44;							// Use this to set the SCL GPIO if your board uses a non-standard GPIOs for the I2C bus.
+const byte sdaGPIO = 26;						// Use this to set the SDA GPIO if your board uses a non-standard GPIOs for the I2C bus.
+const byte sclGPIO = 32;						// Use this to set the SCL GPIO if your board uses a non-standard GPIOs for the I2C bus.
 #endif
-
-#define M5_ATOM							// Commend out this line to use the default SCL and SDA GPIOs.
-#ifdef M5_ATOM
-const byte sdaGPIO = 26;							// Use this to set the SDA GPIO if your board uses a non-standard GPIOs for the I2C bus.
-const byte sclGPIO = 32;							// Use this to set the SCL GPIO if your board uses a non-standard GPIOs for the I2C bus.
-#endif // M5_ATOM
 
 // Characters used in the display.
 const char foundChar = '#';
