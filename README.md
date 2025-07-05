@@ -40,3 +40,5 @@ Address: 0x48
 Scan # 12 complete.
 Pausing for 5 seconds.
 ```
+
+[![CodeFactor](https://www.codefactor.io/repository/github/adamjhowell/i2cbusscanner/badge)](https://www.codefactor.io/repository/github/adamjhowell/i2cbusscanner)
